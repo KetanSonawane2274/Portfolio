@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ketan Sonawane | Portfolio</title>
+
+<style>
+/* ===== Project Proof ===== */
+.project-proof {
+  margin-top: 10px;
+}
+
+.proof-link {
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.proof-link:hover {
+  text-decoration: underline;
+}
+
+/* ===== Root & Base ===== */
+:root{
+  --bg:#020617;
+  --panel:rgba(15,23,42,.85);
+  --border:#1e293b;
+  --text:#e5e7eb;
+  --muted:#94a3b8;
+  --primary:#38bdf8;
+  --shadow:0 25px 50px rgba(0,0,0,.6);
+  font-family: Inter, system-ui, sans-serif;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#0f172a,#020617 70%);
+  color:var(--text);
+}
+
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  padding:24px;
+}
+
+/* ===== Card ===== */
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px;
+  box-shadow:var(--shadow);
+  margin-bottom:24px;
+  animation:fadeUp .5s ease;
+}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:none}
+}
+
+/* ===== Header ===== */
+header{
+  display:flex;
+  gap:24px;
+  align-items:center;
+  flex-wrap:wrap;
+}
+
+.avatar{
+  width:120px;
+  height:120px;
+  padding:4px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),#0ea5e9);
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  object-fit:cover;
+}
+
+h1{
+  margin:0;
+  font-size:32px;
+}
+
+.sub{
+  color:var(--muted);
+  margin-top:6px;
+  line-height:1.6;
+}
+
+/* ===== Button ===== */
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  background:var(--primary);
+  color:#020617;
+  border-radius:12px;
+  font-weight:600;
+  text-decoration:none;
+  box-shadow:0 10px 30px rgba(56,189,248,.45);
+  transition:transform .2s ease, box-shadow .2s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 15px 40px rgba(56,189,248,.6);
+}
+
+/* ===== Tabs ===== */
+.tabs{
+  display:flex;
+  gap:10px;
+  position:sticky;
+  top:0;
+  background:#020617ee;
+  backdrop-filter:blur(10px);
+  padding:14px;
+  border-bottom:1px solid var(--border);
+  z-index:10;
+  flex-wrap:wrap;
+}
+
+.tabs button{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--muted);
+  padding:10px 18px;
+  border-radius:999px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.tabs button.active,
+.tabs button:hover{
+  background:var(--primary);
+  color:#020617;
+  border-color:transparent;
+}
+
+/* ===== Sections ===== */
+section{
+  display:none;
+}
+
+section.active{
+  display:block;
+}
+
+/* ===== Grid Layout ===== */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 360px;
+  gap:24px;
+}
+
+@media(max-width:900px){
+  .grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ===== Skills ===== */
+.skills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+
+.skills li{
+  background:#020617;
+  border:1px solid var(--border);
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:13px;
+}
+
+/* ===== Expense Tracker Image ===== */
+.expense-img{
+  max-width:260px;
+  margin:0 auto;
+  display:block;
+  border-radius:12px;
+}
+
+/* ===== Dashboard Image ===== */
+.dashboard{
+  margin-top:14px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.dashboard img{
+  width:100%;
+  display:block;
+}
+
+/* ===== Certificate Preview (IMPORTANT FIX) ===== */
+.certificate-preview{
+  margin-top:1px;
+  margin-bottom:1px;
+  border-radius:5px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#020617;
+}
+
+.certificate-preview iframe{
+  width:100%;
+  height:300px;
+  border:none;
+}
+
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  color:var(--muted);
+  font-size:13px;
+  margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="card">
+<header>
+  <div class="avatar">
+    <img src="profile.jpg" alt="Ketan Sonawane">
+  </div>
+  <div>
+    <h1>Ketan Sonawane</h1>
+    <div class="sub">BCA Graduate • Aspiring Data Analyst</div>
+    <div class="sub">Python | SQL | MongoDB | Power BI</div>
+  </div>
+  <div style="margin-left:auto">
+    <a class="btn" href="Ketan_Resume.pdf" download>⬇ Download Resume</a>
+  </div>
+</header>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="active" onclick="showTab('home',this)">Home</button>
+  <button onclick="showTab('projects',this)">Projects</button>
+  <button onclick="showTab('skills',this)">Skills</button>
+  <button onclick="showTab('Certificates',this)">Certificates</button>
+  <button onclick="showTab('contact',this)">Contact</button>
+</div>
+
+<!-- HOME TAB -->
+<section id="home" class="active" style="margin-top:20px">
+<div class="grid">
+
+<main>
+
+  <div class="card">
+    <h3>Professional Summary</h3>
+    <p class="sub">
+      Motivated BCA graduate with strong foundations in Python, SQL, MongoDB,
+      and data analytics. Passionate about building analytical dashboards
+      and user-friendly applications.
+    </p>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="card">
+    <h3>Projects</h3>
+
+    <!-- Expense Tracker -->
+<h4>Expense Tracker</h4>
+<p class="sub">Python • Tkinter • MySQL</p>
+
+<!-- Expense Tracker Preview Image -->
+<div class="dashboard">
+  <img src="GUI_Exp_Tracker.jpg"
+  alt="Expense Tracker Preview"
+  class="expense-img">
+  
+</div>
+
+<ul class="sub" style="margin-top:10px">
+  <li>✔ GUI-based desktop application</li>
+  <li>✔ Add, view & delete expenses</li>
+  <li>✔ Category-wise tracking</li>
+  <li>✔ Monthly summary report</li>
+</ul>
+
+<div class="project-proof">
+  <h4>Project Proof</h4>
+  <p>
+    <a href="GUI_Exp_Tracker.txt" target="_blank" download class="proof-link">
+      📄 View / Download Source Code (GUI_Exp_Tracker.txt)
+    </a>
+  </p>
+</div>
+
+
+    <hr style="border-color:var(--border);margin:20px 0">
+
+    <!-- Orders Dashboard -->
+    <h4>Sales Orders Dashboard</h4>
+    <p class="sub">Power BI • Data Analytics</p>
+
+    <div class="dashboard">
+      <img src="orders_dashboard.jpg" alt="Orders Dashboard Preview">
+    </div>
+
+    <ul class="sub" style="margin-top:10px">
+      <li>✔ Total Sales, Profit, Orders KPIs</li>
+      <li>✔ Interactive slicers & filters</li>
+      <li>✔ Category, state & time analysis</li>
+    </ul>
+
+    <div style="margin-top:12px">
+      <a class="btn" href="orders_dashboard.pbix" download>⬇ Download PBIX</a>
+    </div>
+  </div>
+
+</main>
+
+
+
+
+<aside>
+  <div class="card">
+    <h3>Skills</h3>
+    <ul class="skills">
+      <li>Python</li>
+      <li>Pandas</li>
+      <li>NumPy</li>
+      <li>Power BI</li>
+      <li>SQL</li>
+      <li>MongoDB</li>
+      <li>MS Excel</li>
+    </ul>
+  </div>
+
+<!-- CERTIFICATE HIGHLIGHT -->
+<div class="card" style="margin-top:3px">
+  <h3>Certification Highlight</h3>
+
+  <p>
+    🎓 <strong>Data Analytics Certified Professional</strong><br>
+    Excel • SQL • Python • Power BI
+  </p>
+
+  <!-- CERTIFICATE PREVIEW -->
+  <div class="certificate-preview">
+    <iframe
+      src="Ketan_Sonawane_Course_Complete_Certificate.pdf"
+      title="Data Analytics Certificate">
+    </iframe>
+  </div>
+  <a class="btn"
+     href="Ketan_Sonawane_Course_Complete_Certificate.pdf"
+     target="_blank">
+    📄 View Certificate
+  </a>
+</div>
+
+  <div class="card">
+    <h3>Contact</h3>
+    <p class="sub">📞 +91 83291 93289</p>
+    <p class="sub">✉️ ketansonawane2274@gmail.com</p>
+    <p class="sub">📍 Pune,Mumbai, India</p>
+  </div>
+</aside>
+
+</div>
+</section>
+
+<!-- PROJECTS TAB -->
+<section id="projects">
+  
+	   <!-- PROJECTS TAB -->
+<div id="projects" class="tab-content">
+
+  <div class="card">
+    <h3>Projects</h3>
+
+    <!-- Expense Tracker Project -->
+    <h4>Expense Tracker</h4>
+    <p class="sub">Python • Tkinter • MySQL</p>
+
+    <div class="dashboard">
+      <img src="GUI_Exp_Tracker.jpg"
+           alt="Expense Tracker Preview"
+           class="expense-img">
+    </div>
+
+    <ul class="sub" style="margin-top:10px">
+      <li>✔ GUI-based desktop application</li>
+      <li>✔ Add, view & delete expenses</li>
+      <li>✔ Category-wise tracking</li>
+      <li>✔ Monthly summary report</li>
+    </ul>
+
+    <!-- Project Proof -->
+    <div class="project-proof">
+      <h4>Project Proof</h4>
+      <p>
+        <a href="GUI_Exp_Tracker.txt" target="_blank" download class="proof-link">
+          📄 View / Download Source Code
+        </a>
+      </p>
+    </div>
+
+    <hr style="border-color:var(--border);margin:20px 0">
+
+    <!-- Sales Dashboard Project -->
+    <h4>Sales Orders Dashboard</h4>
+    <p class="sub">Power BI • Data Analytics</p>
+
+    <div class="dashboard">
+      <img src="orders_dashboard.jpg" alt="Orders Dashboard Preview">
+    </div>
+
+    <ul class="sub" style="margin-top:10px">
+      <li>✔ Total Sales, Profit, Orders KPIs</li>
+      <li>✔ Interactive slicers & filters</li>
+      <li>✔ Category, state & time analysis</li>
+    </ul>
+
+    <div style="margin-top:12px">
+      <a class="btn" href="orders_dashboard.pbix" download>
+        ⬇ Download PBIX
+      </a>
+    </div>
+
+  </div>
+</div>
+
+</section>
+
+<!-- SKILLS TAB -->
+<section id="skills">
+  <div class="card">
+    <h3>Skills</h3>
+    <ul class="skills">
+      <li>Python</li>
+      <li>Pandas</li>
+      <li>NumPy</li>
+      <li>Power BI</li>
+      <li>SQL</li>
+      <li>MongoDB</li>
+    </ul>
+  </div>
+</section>
+
+
+<!--CERTIFICATES  TAB -->
+<section id="Certificates">
+<div class="cert-item">
+  <h4>Data Analytics Course – Certificate of Completion</h4>
+  <p class="sub">Excel • SQL • Python • Power BI</p>
+  <p>
+    Successfully completed the Data Analytics course with professional
+    excellence. Gained hands-on experience in data analysis, visualization,
+    and dashboard development.
+  </p>
+
+  <!-- CERTIFICATE PREVIEW -->
+  <div class="certificate-preview">
+    <iframe
+      src="Ketan_Sonawane_Course_Complete_Certificate.pdf"
+      title="Data Analytics Certificate">
+    </iframe>
+  </div>
+
+  <p class="sub">
+    📅 Issued: 20 Oct 2025 <br>
+    🆔 Certificate ID: USS2025-IND151
+  </p> <a class="btn"
+     href="Ketan_Sonawane_Course_Complete_Certificate.pdf"
+     target="_blank"
+     download>
+    📄 Download Certificate
+  </a>
+</div>
+</section>
+
+
+<!-- CONTACT TAB -->
+<section id="contact">
+  <div class="cert-item">
+    <h3>Contact</h3>
+    
+    <p class="sub">📞 +91 83291 93289</p>
+    <p class="sub">✉️ ketansonawane2274@gmail.com</p>
+    <p class="sub">📍 Pune,Mumbai,India</p>
+  </div>
+</section>
+
+<footer>
+  Designed & Built by Ketan Sonawane 🚀
+</footer>
+
+</div>
+
+<script>
+function showTab(id,btn){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

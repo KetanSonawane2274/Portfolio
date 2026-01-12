@@ -1,0 +1,128 @@
+import mysql.connector
+from datetime import date
+from tkinter import *
+from tkinter import messagebox
+
+# Database connection
+def db_conn():
+    return mysql.connector.connect(
+         host='localhost',
+         user='root',
+         password='ketan2274',
+         database='mydatabase'
+    )
+def add_expense():
+    amt = amount_entry.get()
+    cat = category_entry.get()
+    desc = description_entry.get()
+    dt_str = date_entry.get()
+    
+    
+    if dt_str.strip() == "":
+        dt_str = date.today().strftime("%Y-%m-%d")
+
+    conn = db_conn()
+    cursor = conn.cursor()
+    sql = "INSERT INTO expenses (ammount, category, description,date) VALUES (%s, %s, %s , %s)"
+    vals = (amt, cat, desc, dt_str)
+    cursor.execute(sql,vals)
+    conn.commit()
+    cursor.close()
+    conn.close()
+    messagebox.showinfo("Success", "Expense added successfully!")
+
+
+
+
+
+
+def show():
+    conn = db_conn()
+    cursor = conn.cursor()
+    cursor.execute('select * from expenses')
+    rows = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    msg = "ID | Amount | Category | Description | Date ""\n"
+    msg +="------------------------------------------------------------------------""\n"
+    for r in rows:
+        msg += f' {r[0]} | {r[1]} | {r[2]} | {r[3]} | {r[4]}\n'
+
+    messagebox.showinfo("Expenses", msg)
+       
+    
+
+
+def delete_expense():
+    conn = db_conn()
+    cursor = conn.cursor()
+    id = delete_entry.get()
+    cursor.execute('delete from expenses where id = %s',(id,))
+    conn.commit()
+    if cursor.rowcount > 0:
+        messagebox.showinfo("", "Expense deleted successfully!")
+    else : 
+        messagebox.showinfo("","No matches found!!")
+    cursor.close()
+    conn.close()
+    
+
+def summary():
+    conn = db_conn()
+    cursor = conn.cursor()
+    cursor.execute("SELECT MONTH(date), YEAR(date), SUM(ammount) FROM expenses GROUP BY MONTH(date), YEAR(date)ORDER BY YEAR(date), MONTH(date)")
+    rows = cursor.fetchall()
+    msg = "MM/YYYY |Total""\n"
+    msg += "---------------------""\n"
+    for month,year,ammount in rows:
+        msg += f' {month} / {year} | {ammount} \n'
+    messagebox.showinfo("summary", msg)
+    cursor.close()
+    conn.close()
+    
+
+
+
+root = Tk()
+root.title("Expense Tracker")
+
+
+
+
+#Lable usedd to display text.
+Label(root, text="Amount:" ).grid(row=0, column=0, padx=10, pady=5)
+amount_entry = Entry(root)
+amount_entry.grid(row=0, column=1, padx=10, pady=5)
+
+Label(root, text="Category:").grid(row=1, column=0, padx=10, pady=5)
+category_entry = Entry(root)
+category_entry.grid(row=1, column=1, padx=10, pady=5)
+
+Label(root, text="Description:").grid(row=2, column=0, padx=10, pady=5)
+description_entry = Entry(root)
+description_entry.grid(row=2, column=1, padx=10, pady=5)
+
+Label(root, text="Date (YYYY-MM-DD):").grid(row=3, column=0, padx=10, pady=5)
+date_entry = Entry(root)
+date_entry.grid(row=3, column=1, padx=10, pady=5)
+
+Label(root, text="Expense ID to Delete:").grid(row=6, column=0, padx=10, pady=5)
+delete_entry = Entry(root)
+delete_entry.grid(row=6, column=1, padx=10, pady=5)
+
+
+#button() - use to trigger function
+add_button = Button(root, text="Add Expenses",bg="yellow", fg="red", command = add_expense)
+add_button.grid(row=4, column=0,columnspan = 2 , pady = 5)
+
+add_button = Button(root, text="Show Expenses",bg="yellow", fg="red", command = show)
+add_button.grid(row=5, column=0,columnspan = 2 , pady = 5)
+
+delete_button = Button(root, text="Delete Expense",bg="yellow", fg="red", command=delete_expense)
+delete_button.grid(row=7, column=0, pady=5)
+
+
+summary_button = Button(root, text="Monthly Summary",bg="yellow", fg="red", command=summary)
+summary_button.grid(row=8, column=0,  pady=10)
+
+root.mainloop()
